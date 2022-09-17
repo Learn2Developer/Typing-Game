@@ -7,15 +7,6 @@ import random
 from Word_List import word_list
 
 
-def sentence_rand():
-    return random.sample(word_list, 10)
-
-
-sentence_rand_words = sentence_rand()
-sentence_rand_together = " ".join(sentence_rand_words)
-sentence = sentence_rand_together
-
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -71,56 +62,55 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+    def __init__(self):
+        self.count = 0
         self.tic = time.perf_counter()
+        self.sentence_rand()
+        self.wpm_total = 0
+        self.accuracy_total = 0
 
-    def retranslateUi(self, MainWindow):
-        _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.sentence_label.setText(_translate("MainWindow", sentence_rand_together))
-        self.label.setText(_translate("MainWindow", "WPM"))
-        self.label_2.setText(_translate("MainWindow", "Accuracy"))
+    def sentence_rand(self):
+        self.sentence_rand_words = random.sample(word_list, 10)
+        self.sentence_rand_together = " ".join(self.sentence_rand_words)
 
     def submit(self):
         self.toc = time.perf_counter()
         total_time = self.toc - self.tic
 
-        user_typing = self.lineEdit.text()
-        user_words = user_typing.split()
+        self.count += 1
+        print("count is " + str(self.count))
+
+        self.user_typing = self.lineEdit.text()
+        self.user_words = self.user_typing.split()
         self.lineEdit.setText("")
 
-        not_in_sentence = set(sentence_rand_words).difference(set(user_words))
-        correct_percent = (len(sentence_rand_words) - len(not_in_sentence)) / len(
-            sentence_rand_words
+        self.not_in_sentence = set(self.sentence_rand_words).difference(
+            set(self.user_words)
         )
 
-        wpm = ((len(sentence_rand_words) - len(not_in_sentence)) / total_time) * 60
-        self.lcdNumber_WPM.display(int(wpm))
+        correct_percent = (
+            len(self.sentence_rand_words) - len(self.not_in_sentence)
+        ) / len(self.sentence_rand_words)
         self.lcdNumber_Accuracy.display(int(correct_percent * 100))
-        new_sentence_words = sentence_rand()
-        self.sentence_label.setText(" ".join(new_sentence_words))
-        sentence_rand_words = new_sentence_words
-        user_words = ""
+
+        wpm = (
+            (len(self.sentence_rand_words) - len(self.not_in_sentence)) / total_time
+        ) * 60
+        self.lcdNumber_WPM.display(int(wpm))
+
+        self.sentence_rand()
+        self.sentence_label.setText(self.sentence_rand_together)
+        self.user_typing = ""
         self.tic = time.perf_counter()
 
-    def user_input():
-        print(sentence)
-        tic = time.perf_counter()
-        user_typing = input("Please type the sentence above. ")
-        toc = time.perf_counter()
-        total_time = toc - tic
-
-        sentence_words = sentence_rand
-
-        user_words = user_typing.split()
-
-        not_in_sentence = set(sentence_words).difference(set(user_words))
-
-        correct_percent = (len(sentence_words) - len(not_in_sentence)) / len(
-            sentence_words
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.sentence_label.setText(
+            _translate("MainWindow", self.sentence_rand_together)
         )
-        print("Accuracy: " + str(correct_percent * 100) + "%")
-        wpm = ((len(sentence_words) - len(not_in_sentence)) / total_time) * 60
-        print("Your WPM is " + str(round(wpm, 0)))
+        self.label.setText(_translate("MainWindow", "WPM"))
+        self.label_2.setText(_translate("MainWindow", "Accuracy"))
 
 
 if __name__ == "__main__":
