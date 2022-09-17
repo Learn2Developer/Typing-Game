@@ -4,10 +4,7 @@ import random
 from Word_List import word_list
 
 sentence_rand = random.sample(word_list, 10)
-print(sentence_rand)
 sentence_rand_together = " ".join(sentence_rand)
-print(sentence_rand_together)
-
 sentence = sentence_rand_together
 
 
@@ -19,10 +16,8 @@ def user_input():
     total_time = toc - tic
 
     sentence_words = sentence_rand
-    sentence_word_num = len(sentence_rand)
 
     user_words = user_typing.split()
-    user_word_num = len(user_words)
 
     not_in_sentence = set(sentence_words).difference(set(user_words))
 
