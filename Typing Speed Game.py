@@ -1,19 +1,25 @@
 # Typing speed game
 import time
 import random
+from Word_List import word_list
 
-sentence = "There seems to be an unusual amount of pigeons here."
+sentence_rand = random.sample(word_list, 10)
+print(sentence_rand)
+sentence_rand_together = " ".join(sentence_rand)
+print(sentence_rand_together)
+
+sentence = sentence_rand_together
 
 
 def user_input():
-    tic = time.perf_counter()
     print(sentence)
+    tic = time.perf_counter()
     user_typing = input("Please type the sentence above. ")
     toc = time.perf_counter()
     total_time = toc - tic
 
-    sentence_words = sentence.split()
-    sentence_word_num = len(sentence_words)
+    sentence_words = sentence_rand
+    sentence_word_num = len(sentence_rand)
 
     user_words = user_typing.split()
     user_word_num = len(user_words)
