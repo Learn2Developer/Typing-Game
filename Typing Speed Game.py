@@ -88,15 +88,19 @@ class Ui_MainWindow(object):
             set(self.user_words)
         )
 
-        correct_percent = (
+        self.correct_percent = (
             len(self.sentence_rand_words) - len(self.not_in_sentence)
         ) / len(self.sentence_rand_words)
-        self.lcdNumber_Accuracy.display(int(correct_percent * 100))
+        self.lcdNumber_Accuracy.display(int(self.correct_percent * 100))
 
-        wpm = (
+        self.wpm = (
             (len(self.sentence_rand_words) - len(self.not_in_sentence)) / total_time
         ) * 60
-        self.lcdNumber_WPM.display(int(wpm))
+        print("WPM is " + str(self.wpm))
+        self.wpm_total += int(self.wpm)
+        self.wpm_total = self.wpm_total / self.count
+        print(self.wpm_total)
+        self.lcdNumber_WPM.display(int(self.wpm_total))
 
         self.sentence_rand()
         self.sentence_label.setText(self.sentence_rand_together)
