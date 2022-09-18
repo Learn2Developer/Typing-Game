@@ -89,7 +89,7 @@ class Ui_MainWindow(object):
         while self.count <= 4:
             self.toc = time.perf_counter()
             self.total_time = self.toc - self.tic
-            print(self.total_time)
+            # print(self.total_time)
 
             self.user_typing = self.lineEdit.text()
             self.user_words = self.user_typing.split()
@@ -104,13 +104,13 @@ class Ui_MainWindow(object):
                 / len(self.sentence_rand_words)
             ) * 100
 
-            print("correct percent = " + str(self.correct_percent))
+            # print("correct percent = " + str(self.correct_percent))
             self.accuracy_sum += self.correct_percent
 
-            print("accuracy before division = " + str(self.accuracy_total))
+            # print("accuracy before division = " + str(self.accuracy_total))
             self.accuracy_total = self.accuracy_sum / self.count
 
-            print("accuracy after division = " + str(self.accuracy_total))
+            # print("accuracy after division = " + str(self.accuracy_total))
             self.lcdNumber_Accuracy.display(int(self.accuracy_total))
 
             self.wpm = (
@@ -118,13 +118,13 @@ class Ui_MainWindow(object):
                 / self.total_time
             ) * 60
 
-            print("WPM for this round = " + str(self.wpm))
+            # print("WPM for this round = " + str(self.wpm))
             self.wpm_sum += self.wpm
 
-            print("WPM total before division = " + str(self.wpm_total))
+            # print("WPM total before division = " + str(self.wpm_total))
             self.wpm_total = self.wpm_sum / self.count
 
-            print("WPM after division = " + str(self.wpm_total))
+            # print("WPM after division = " + str(self.wpm_total))
 
             self.lcdNumber_WPM.display(int(self.wpm_total))
 
@@ -133,7 +133,7 @@ class Ui_MainWindow(object):
             self.user_typing = ""
             self.progressBar.setValue((self.count) * 20)
             self.count += 1
-            print("count is " + str(self.count))
+            # print("count is " + str(self.count))
             self.tic = time.perf_counter()
             break
 
