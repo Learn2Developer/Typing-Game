@@ -85,7 +85,7 @@ class Ui_MainWindow(object):
         self.sentence_rand_together = " ".join(self.sentence_rand_words)
 
     def submit(self):
-        while self.count <= 9:
+        while self.count <= 4:
             self.toc = time.perf_counter()
             self.total_time = self.toc - self.tic
             print(self.total_time)
@@ -130,7 +130,7 @@ class Ui_MainWindow(object):
             self.sentence_rand()
             self.sentence_label.setText(self.sentence_rand_together)
             self.user_typing = ""
-            self.progressBar.setValue((self.count) * 10)
+            self.progressBar.setValue((self.count) * 20)
             self.count += 1
             print("count is " + str(self.count))
             self.tic = time.perf_counter()
