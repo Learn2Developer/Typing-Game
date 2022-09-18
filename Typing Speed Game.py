@@ -37,7 +37,7 @@ class Ui_MainWindow(object):
         self.lineEdit.setGeometry(QtCore.QRect(12, 200, 741, 51))
         font = QtGui.QFont()
         font.setFamily("DejaVu Sans")
-        font.setPointSize(10)
+        font.setPointSize(15)
         self.lineEdit.setFont(font)
         self.lineEdit.setObjectName("lineEdit")
         self.lineEdit.returnPressed.connect(self.submit)
@@ -143,10 +143,11 @@ class Ui_MainWindow(object):
             self.ui.setupUi(self.window)
             self.window.show()
             self.ui.accuracy_total_label.setText(
-                "Your total Accuracy average was: " + str(int(self.accuracy_total))
+                "Your average Accuracy was: " + str(int(self.accuracy_total)) + "%"
             )
+
             self.ui.wpm_total_label.setText(
-                "Your total WPM average was: " + str(int(self.wpm_total))
+                "Your average Speed was: " + str(int(self.wpm_total)) + " wpm"
             )
             MainWindow.close()
 
