@@ -14,14 +14,14 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(653, 530)
+        MainWindow.resize(767, 475)
         font = QtGui.QFont()
         font.setFamily("Minecraft")
         MainWindow.setFont(font)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.sentence_label = QtWidgets.QLabel(self.centralwidget)
-        self.sentence_label.setGeometry(QtCore.QRect(10, 100, 621, 71))
+        self.sentence_label.setGeometry(QtCore.QRect(10, 110, 741, 71))
         font = QtGui.QFont()
         font.setFamily("DejaVu Sans")
         font.setPointSize(15)
@@ -35,24 +35,28 @@ class Ui_MainWindow(object):
         self.sentence_label.setAlignment(QtCore.Qt.AlignCenter)
         self.sentence_label.setObjectName("sentence_label")
         self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit.setGeometry(QtCore.QRect(22, 220, 601, 51))
+        self.lineEdit.setGeometry(QtCore.QRect(12, 200, 741, 51))
         font = QtGui.QFont()
         font.setFamily("DejaVu Sans")
         font.setPointSize(10)
         self.lineEdit.setFont(font)
         self.lineEdit.setObjectName("lineEdit")
         self.lcdNumber_WPM = QtWidgets.QLCDNumber(self.centralwidget)
-        self.lcdNumber_WPM.setGeometry(QtCore.QRect(150, 412, 64, 31))
+        self.lcdNumber_WPM.setGeometry(QtCore.QRect(210, 302, 64, 31))
         self.lcdNumber_WPM.setObjectName("lcdNumber_WPM")
         self.lcdNumber_Accuracy = QtWidgets.QLCDNumber(self.centralwidget)
-        self.lcdNumber_Accuracy.setGeometry(QtCore.QRect(440, 412, 64, 31))
+        self.lcdNumber_Accuracy.setGeometry(QtCore.QRect(500, 302, 64, 31))
         self.lcdNumber_Accuracy.setObjectName("lcdNumber_Accuracy")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(110, 420, 31, 17))
+        self.label.setGeometry(QtCore.QRect(170, 310, 31, 17))
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setGeometry(QtCore.QRect(370, 420, 62, 17))
+        self.label_2.setGeometry(QtCore.QRect(430, 310, 62, 17))
         self.label_2.setObjectName("label_2")
+        self.progressBar = QtWidgets.QProgressBar(self.centralwidget)
+        self.progressBar.setGeometry(QtCore.QRect(307, 60, 131, 23))
+        self.progressBar.setProperty("value", 24)
+        self.progressBar.setObjectName("progressBar")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -64,13 +68,18 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.sentence_label.setText(_translate("MainWindow", "there are an alarming amount of pigeons in here right"))
+        self.sentence_label.setText(
+            _translate(
+                "MainWindow", "there are an alarming amount of pigeons in here right"
+            )
+        )
         self.label.setText(_translate("MainWindow", "WPM"))
         self.label_2.setText(_translate("MainWindow", "Accuracy"))
 
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
